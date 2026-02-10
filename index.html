@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Warm Cup Cafe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+    --main:#c59d5f;
+    --bg:#fdfcfb;
+    --text:#333;
+    --card:#ffffff;
+}
+
+body.dark{
+    --bg:#1e1e1e;
+    --text:#ffffff;
+    --card:#2a2a2a;
+}
+
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:0.3s;
+}
+
+/* header */
+header{
+    height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+        url("images/hero.jpg") center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+header h1{font-size:48px;}
+header p{font-size:20px;}
+
+/* button */
+.btn{
+    padding:12px 28px;
+    border-radius:30px;
+    background:var(--main);
+    color:white;
+    text-decoration:none;
+    display:inline-block;
+    margin:10px;
+    transition:0.2s;
+}
+.btn:hover{opacity:0.85}
+
+/* section */
+section{
+    padding:60px 20px;
+    text-align:center;
+}
+
+/* menu */
+.menu{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.card{
+    width:260px;
+    background:var(--card);
+    border-radius:20px;
+    padding:15px;
+    transition:0.3s;
+}
+.card:hover{
+    transform:translateY(-6px);
+}
+.card img{
+    width:100%;
+    border-radius:15px;
+}
+
+/* map */
+iframe{
+    width:100%;
+    max-width:600px;
+    height:300px;
+    border-radius:15px;
+    border:none;
+}
+
+/* floating line */
+.line-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#06c755;
+    color:white;
+    padding:15px 20px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* dark toggle */
+.toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    cursor:pointer;
+    background:#333;
+    color:white;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:18px;
+}
+
+/* footer */
+footer{
+    background:#333;
+    color:#f8f8f8;
+    padding:30px;
+}
+
+/* ===== Scroll Animation ===== */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.8s ease;
+}
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* responsive */
+@media(max-width:600px){
+    header h1{font-size:36px;}
+    header p{font-size:18px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleDark()">🌙</div>
+
+<a class="line-btn" href="https://line.me/R/ti/p/@warmcupcafe" target="_blank">
+💬 สั่งผ่าน LINE
+</a>
+
+<header>
+<div class="reveal">
+<h1>☕ Warm Cup Cafe</h1>
+<p>กาแฟหอม ขนมอบสด อบอุ่นทุกวัน</p>
+<a href="#menu" class="btn">ดูเมนู</a>
+<a href="#contact" class="btn">ติดต่อร้าน</a>
+</div>
+</header>
+
+<section id="menu">
+<h2 class="reveal">🍰 เมนูแนะนำ</h2>
+<div class="menu">
+
+<div class="card reveal">
+<img src="images/coffee.jpg" alt="ลาเต้" loading="lazy">
+<h3>ลาเต้</h3>
+<p>60 บาท</p>
+</div>
+
+<div class="card reveal">
+<img src="images/cake.jpg" alt="เค้กช็อกโกแลต" loading="lazy">
+<h3>เค้กช็อกโกแลต</h3>
+<p>75 บาท</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2 class="reveal">📍 ที่ตั้งร้าน</h2>
+<iframe class="reveal" loading="lazy"
+src="https://www.google.com/maps?q=bangkok&output=embed">
+</iframe>
+</section>
+
+<section id="contact">
+<h2 class="reveal">📞 ติดต่อเรา</h2>
+<p class="reveal">โทร: <a href="tel:0826248410">082-624-8410</a></p>
+<p class="reveal">IG: nomne_ed52</p>
+<p class="reveal">เปิดทุกวัน 08:00 - 18:00</p>
+</section>
+
+<footer>
+<p>© 2026 Warm Cup Cafe</p>
+</footer>
+
+<script>
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+/* Scroll animation */
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+    reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const height = window.innerHeight;
+        if(top < height - 100){
+            el.classList.add('active');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
